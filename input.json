@@ -1,0 +1,33 @@
+{
+    "name": "Sample01", 
+    "id": "sample01", 
+    "description": "Sample project created with the CLI", 
+    "sourceCode": [
+        {
+            "source": {
+                "s3": {
+                    "bucketName": "hgs-sample01-code-cf", 
+                    "bucketKey": "src.zip"
+                }
+            }, 
+            "destination": {
+                "codeCommit": {
+                    "name": "sample01"
+                
+                }
+            }
+        }
+    ], 
+    "toolchain": {
+        "source": {
+            "s3": {
+                "bucketName": "hgs-sample01-code-cf", 
+                "bucketKey": "toolchain.yml"
+            }
+        },
+        "roleArn": "arn:aws:iam::240156344685:role/service-role/aws-codestar-service-role", 
+        "stackParameters": {
+            "ProjectId": "sample01"
+        }
+    }
+}

@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform:
-- AWS::Serverless-2016-10-31
-- AWS::CodeStar
+  - AWS::Serverless-2016-10-31
+  - AWS::CodeStar
 
 Parameters:
   ProjectId:
@@ -29,8 +29,8 @@ Resources:
           NODE_ENV: production
       Role:
         Fn::GetAtt:
-        - LambdaExecutionRole
-        - Arn
+          - LambdaExecutionRole
+          - Arn
       Events:
         GetEvent:
           Type: Api
@@ -46,13 +46,13 @@ Resources:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Join ['-', [CodeStar, !Ref ProjectId, Execution]]
+      RoleName: !Join ["-", [CodeStar, !Ref ProjectId, Execution]]
       AssumeRolePolicyDocument:
         Statement:
-        - Effect: Allow
-          Principal:
-            Service: [lambda.amazonaws.com]
-          Action: sts:AssumeRole
+          - Effect: Allow
+            Principal:
+              Service: [lambda.amazonaws.com]
+            Action: sts:AssumeRole
       Path: /
       ManagedPolicyArns:
-        -  arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
